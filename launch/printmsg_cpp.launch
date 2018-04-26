@@ -1,0 +1,22 @@
+<launch>
+
+<param name="/foo/bar/msg" value="Good" />
+
+<node name="no_remap" pkg="test_remap" type="printmsg_cpp" output="screen">
+    <param name="msg" value="Good" />
+</node>
+
+<node name="normal_remap" pkg="test_remap" type="printmsg_cpp" output="screen">
+    <remap from="~msg" to="/foo/bar/msg" />
+</node>
+
+<remap from="/normal_external_remap/msg" to="/foo/bar/msg" />
+<node name="normal_external_remap" pkg="test_remap" type="printmsg_cpp" output="screen" />
+
+<remap from="/nodename_remap" to="/foo/bar" />
+<node name="nodename_remap" pkg="test_remap" type="printmsg_cpp" output="screen" />
+
+<remap from="/ns/remap" to="/foo/bar" />
+<node ns="ns" name="remap" pkg="test_remap" type="printmsg_cpp" output="screen" />
+
+</launch>
